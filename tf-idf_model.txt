@@ -1,0 +1,14 @@
+(0, '0.006*"century" + 0.004*"early" + 0.004*"stanislavski" + 0.004*"modern" + 0.003*"twentieth" + 0.003*"theater" + 0.003*"development" + 0.003*"western" + 0.003*"anyone" + 0.003*"greek"')
+
+(1, '0.004*"literary" + 0.004*"political" + 0.004*"latin" + 0.003*"gender" + 0.003*"history" + 0.003*"queer" + 0.003*"contemporary" + 0.003*"theoretical" + 0.003*"social" + 0.003*"feminist"')
+
+(2, '0.008*"theater" + 0.007*"text" + 0.006*"director" + 0.005*"play" + 0.004*"production" + 0.004*"light" + 0.004*"front" + 0.004*"collaboration" + 0.004*"obedience" + 0.004*"house"')
+
+(3, '0.006*"writing" + 0.006*"spanish" + 0.006*"speaking" + 0.005*"dramatic" + 0.005*"language" + 0.005*"theater" + 0.005*"advanced" + 0.004*"lit" + 0.004*"potential" + 0.004*"opportunity"')
+
+(4, '0.005*"compositional" + 0.004*"stage" + 0.004*"garc" + 0.004*"topography" + 0.004*"tempo" + 0.004*"duration" + 0.003*"individually" + 0.003*"shape" + 0.003*"kinesthetic" + 0.003*"repetition"')
+
+(5, '0.007*"design" + 0.007*"performance" + 0.006*"production" + 0.005*"theatrical" + 0.005*"module" + 0.004*"theater" + 0.004*"studio" + 0.004*"sound" + 0.004*"technical" + 0.004*"ability"')
+
+(6, '0.005*"science" + 0.004*"biology" + 0.004*"mathematics" + 0.004*"laboratory" + 0.003*"field" + 0.003*"math" + 0.003*"computer" + 0.003*"system" + 0.003*"scientific" + 0.003*"food"')
+
