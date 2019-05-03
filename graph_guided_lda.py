@@ -112,7 +112,8 @@ def word_clouds(model, vocab, stop_words, n_top_words, labeled):
 
     fig, axes = plt.subplots(2, 3, figsize=(20,10), sharex=True, sharey=True)
    
-    graph_titles=['STEM','Expository Writing','Social Sciences','Literature and Writing','Contemporary Studies'] 
+    graph_titles=['Literature and Writing','Contemporary Studies','STEM','Social Sciences','Art']
+
     for i, ax in enumerate(axes.flatten()):
         if (i==5):
             continue
@@ -188,7 +189,7 @@ def word_cloud_courses(model, vocab, stop_words, n_top_words, labeled):
                       color_func=lambda *args, **kwargs: cols[i],
                       prefer_horizontal=1.0)
     
-    with open('bisect_k-means.csv') as csv_file:
+    with open('clustered_classes.csv') as csv_file:
         reader = csv.reader(csv_file)
         old_dict = dict(reader)
     #print(old_dict)
@@ -205,7 +206,7 @@ def word_cloud_courses(model, vocab, stop_words, n_top_words, labeled):
             probabilities.append((j, max_doc_topic[classes.index(j)]))
         topics.append((i, probabilities))
     #print(topics)
-    graph_titles=['STEM','Expository Writing','Social Sciences','Literature and Writing','Contemporary Studies'] 
+    graph_titles=['Literature and Writing','Contemporary Studies','STEM','Social Sciences','Art'] 
 
     fig, axes = plt.subplots(2, 3, figsize=(20,10), sharex=True, sharey=True)
 
@@ -240,7 +241,7 @@ def main():
         model = pickle.load(file_handle)
     
     vocab, stopwords=print_topics(model, printing=False)
-    #word_cloud_courses(model, vocab, stopwords, 100, labeled=True)
+    #word_cloud_courses(model, vocab, stopwords, 10, labeled=False)
     #word_clouds(model, vocab, stopwords, 100, labeled=True)
     #word_cloud_all(model, vocab, stopwords, 100, mask_image="simons_rock_alpaca.jpeg")
     #guided_topic_graph(model.doc_topic_.tolist(), model)

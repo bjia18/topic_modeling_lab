@@ -1,0 +1,152 @@
+<!doctype html>
+<title>Example</title>
+<style>
+  * {
+    box-sizing: border-box; 
+  }
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+    margin: 0;
+  }
+  .col-1 {
+    background: #D7E8D4;
+    flex: 1;
+  }
+  .col-2 {
+    display: flex;
+    flex-direction: column;
+    flex: 5;
+  }
+  .content {
+    display: flex;
+    flex-direction: row;
+  }
+  .content > article {
+    flex: 4;
+    min-height: 60vh;
+  }
+  header{
+    background: yellowgreen;
+    height: 20vh;
+  }
+  header, article {
+    padding: 1em;
+  }
+</style>
+<body>
+  <div class="col-2">
+  	<header style="text-align:center; font-family:verdana; font-size: 250%">Course Clustering:<br>Bard College at Simon's Rock</header>
+    <main class="content">
+    <article style="font-family:verdana; font-size: 150%">
+
+	<b>Method</b>: Guided LDA (Latent Dirichlet Allocation)<br><br>
+	Thanks to Vikash Singh's <a href="https://github.com/vi3k6i5/guidedlda">semi-supervised guided topic model</a>.<br><br>&emsp;
+      
+	Step 1: Find topic model<br><br>
+	   
+	   <li>TF-IDF (Term Frequency-Inverse Document Frequency)</li>&emsp;
+	   
+	   <li>LDA Corpus (standard)</li>&emsp;
+	   
+	   <li><b>Guided LDA</b></li><br>&emsp;
+	   
+	   Step 2: Normalize values (topic document numbers from model are extremely small floats)<br><br>
+	   
+	   <li><b>Max-min method</b></li>&emsp;
+	   
+	   <li><b>Multiply by an exponent of 10 to change data range from 0 to 1 to integers</b></li><br>&emsp;
+	   
+	   Step 3: K-means clustering<br><br>
+	   
+	   <div class="row">
+		   <div class="column">
+			   <img src="elbow_chart.png" width="750" height="550" alt="Elbow Method">
+		   </div>
+		   
+		   <div class="column">
+			   <img src="metrics.png" width="750" height="550" alt="Clustering Distances">
+		   </div>
+	   </div>
+	   
+	   <li><b>Pearson (distance measurement)</b></li>&emsp;
+
+	   <li><b>Best k: 5</b></li><br><br>
+
+	 <b>Results</b>: Documents and Class Clusters<br><br>
+
+	 <b>Documents</b>:<br><br>
+	 <div class="row">
+                   <div class="column">
+                           <img src="word_clouds_10.png" width="950" height="550" alt="Word Clouds 10">
+                   </div>
+
+                   <div class="column">
+                           <img src="word_clouds_20.png" width="950" height="550" alt="Word Clouds 20">
+                   </div>
+	 </div>
+
+	 <img src="word_clouds_100_labeled.png" width="1000" height="750" alt="Word Clouds 100 Labeled" class="center">
+	<b>Mixed</b>:<br><br>
+	
+	 <div class="row">
+                   <div class="column">
+                           <img src="word_clouds_all_10.png" width="900" height="550" alt="Word Clouds All 10">
+                   </div>
+
+                   <div class="column">
+                           <img src="word_clouds_all_20.png" width="900" height="550" alt="Word Clouds All 20">
+                   </div>
+         </div>
+
+         <img src="word_clouds_all_100.png" width="750" height="1650" alt="Word Clouds All 100" class="center">
+
+	 <b>Class Clusters</b>:<br><br>
+	 <b>Distance Matrix</b>
+	 
+	 <img src="heatmap.png" width="800" height="800" alt="Distance Matrix" class="center">
+
+	<br><br><b>Classes</b>
+         
+	<div class="row">
+                   <div class="column">
+                           <img src="class_word_clouds_10.png" width="950" height="550" alt="Class Word Clouds 10">
+                   </div>
+
+                   <div class="column">
+                           <img src="class_word_clouds_20.png" width="950" height="550" alt="Class Word Clouds 20">
+                   </div>
+         </div>
+
+         <img src="class_word_clouds_100_labeled.png" width="1000" height="750" alt="Class Word Clouds 100 Labeled" class="center">
+	
+	 <br><br><b>Analysis</b>:<br><br>
+
+	 <img src="percentage_matrix.png" width="800" height="1200" alt="Percentage Matrix" class="center">
+
+	   <style>
+	      .column {
+		 float: left;
+		 width: 50%;
+		 padding: 5px;
+		}
+
+		/* Clear floats after image containers */
+		.row::after {
+		 content: "";
+		clear: both;
+		display: table;
+		}
+		.center {
+		  display: block;
+		  margin-left: auto;
+		  margin-right: auto;
+		  width: 75%;
+		}
+		</style>
+	      
+      </article>
+    </main>
+  </div>
+</body>

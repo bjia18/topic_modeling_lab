@@ -4,10 +4,9 @@ best_k=5
 
 import matplotlib.pyplot as plt
 import numpy as np
+import bisect_k
 from preprocess_file import *
 from print_model import *
-import bisect_k
-import hierarchical
 #import word_cloud
 from sse_and_centroid import*
 
@@ -37,33 +36,30 @@ def elbow_method(data):
     x_k=[]
     y_sse=[]
     for i in max_range:
-        #raw_clusters = clus.kcluster(data, distance=func, k=i)
-        raw_clusters=b_k_test(data, i) 
-        clusters=bisect_k.eliminate(raw_clusters)
+        raw_clusters = clus.kcluster(data, distance=func, k=i)
+        clusters=eliminate(raw_clusters)
         x_k.append(i)
         y_sse.append(sse(clusters, data))
 
     fig, ax = plt.subplots()
     ax.plot(x_k, y_sse)
 
-    ax.set(xlabel='k', ylabel='sse',title='bisect k-means')
+    ax.set(xlabel='k', ylabel='sse',title='k-means')
     fig.savefig("elbow_chart.png")
     plt.show()
 
 def test_metrics(data):
     sse_metrics=[]
-    metrics=['manhattan','euclidean','cosine','pearson','tanimoto','bisect']
-    clusters=bisect_k.eliminate(clus.kcluster(data, distance=clus.manhattan, k=best_k))
+    metrics=['manhattan','euclidean','cosine','pearson','tanimoto']
+    clusters=eliminate(clus.kcluster(data, distance=clus.manhattan, k=best_k))
     sse_metrics.append(sse(clusters, data))
-    clusters=bisect_k.eliminate(clus.kcluster(data, distance=clus.euclidean, k=best_k))
+    clusters=eliminate(clus.kcluster(data, distance=clus.euclidean, k=best_k))
     sse_metrics.append(sse(clusters, data))
-    clusters=bisect_k.eliminate(clus.kcluster(data, distance=clus.cosine, k=best_k))
+    clusters=eliminate(clus.kcluster(data, distance=clus.cosine, k=best_k))
     sse_metrics.append(sse(clusters, data))
-    clusters=bisect_k.eliminate(clus.kcluster(data, distance=clus.pearson, k=best_k))
+    clusters=eliminate(clus.kcluster(data, distance=clus.pearson, k=best_k))
     sse_metrics.append(sse(clusters, data))
-    clusters=bisect_k.eliminate(clus.kcluster(data, distance=clus.tanimoto, k=best_k))
-    sse_metrics.append(sse(clusters, data))
-    clusters=bisect_k.eliminate(b_k_test(data, best_k))
+    clusters=eliminate(clus.kcluster(data, distance=clus.tanimoto, k=best_k))
     sse_metrics.append(sse(clusters, data))
     
     fig, ax = plt.subplots()
@@ -73,21 +69,11 @@ def test_metrics(data):
     fig.savefig("metrics.png")
     plt.show()
 
-def b_k_test(data, test_k):
-    x=test_k+2
-    raw_clusters = bisect_k.bisect([list(range(len(data)))], data, distance=clus.pearson, k=x)
-    clusters = []
-    for i in range(test_k):
-        if len(raw_clusters[i]) == 0:
-            continue
-        clusters.append(raw_clusters[i])
-    return clusters
-
-def b_k(data, countries):
+def k_means(data, countries):
     tests=[]
-    for j in range(501):
+    for j in range(1001):
         test={}
-        raw_clusters = bisect_k.bisect([list(range(len(data)))], data, distance=clus.pearson, k=best_k+2)
+        raw_clusters = clus.kcluster(data, distance=func, k=best_k)
         clusters = []
         for i in range(best_k):
             if len(raw_clusters[i]) == 0:
@@ -119,7 +105,7 @@ def main():
     data, classes=read_file()
     #elbow_method(data)
     #test_metrics(data)
-    b_k(data, classes)
+    #k_means(data, classes)
     #hierarchical.hier(data,classes)
     '''raw_clusters = clus.kcluster(data, distance=func, k=best_k)
     clusters = []

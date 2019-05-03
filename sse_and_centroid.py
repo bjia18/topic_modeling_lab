@@ -16,3 +16,11 @@ def calc_centroid(c, data):
 
     centroid = [round(centroid[i]/len(c)) for i in range(len(centroid))]
     return centroid
+
+def eliminate(raw_clusters):
+    clusters=[]
+    for i in range(len(raw_clusters)):
+        if len(raw_clusters[i]) != 0:
+            clusters.append(raw_clusters[i])
+    return clusters
+

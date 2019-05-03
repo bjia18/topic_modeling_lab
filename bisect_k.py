@@ -1,14 +1,6 @@
 import clusters as clus
 from sse_and_centroid import *
 
-def eliminate(raw_clusters):
-    clusters=[]
-    for i in range(len(raw_clusters)):
-        if len(raw_clusters[i]) != 0:
-            clusters.append(raw_clusters[i])
-    return clusters
-
-
 def bisect (clusters, data, distance=clus.euclidean, k=4):
     if len(clusters) == k:
         return clusters
